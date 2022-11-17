@@ -13,19 +13,36 @@ import {
   Text,
   Paper,
   Avatar,
+  Title,
 } from "@mantine/core";
 import { IconChevronRight } from "@tabler/icons";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getCommits } from "../../api/commit";
+import { getAllCommits } from "../../api/commit";
+import { commitsMap } from "../../api/data";
 
 export default function Home() {
   const [commits, setCommits] = useState();
   useEffect(() => {
-    getCommits().then((data) => {
+    getAllCommits().then((data) => {
+      console.log("commits", data);
       setCommits(data);
     });
   }, []);
+
+  // refresh the API every few seconds
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      getAllCommits().then((data) => {
+        console.log("commits", data);
+        setCommits(data);
+      });
+    }, 3000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  });
 
   return (
     <div style={{ backgroundColor: "black", height: 1000 }}>
@@ -33,90 +50,53 @@ export default function Home() {
         <title>Login with Cult</title>
       </Head>
 
-      <Container>
-        {/* {user ? (
-          <Paper mt="xl" p="xl">
-            <Flex>
-              <Flex>
-                <Avatar size="xl" radius="xl" src={user.profilePictureUrl} />
-              </Flex>
-              <Flex ml="xl" direction="column">
-                <Flex>
-                  <Text fw="bold" fz="xl">
-                    {user.firstName} {user.lastName}
-                  </Text>
-                </Flex>
-                <Flex>
-                  <Text fz="xl">Cult HSR 19th Main</Text>
-                </Flex>
-              </Flex>
-            </Flex>
-          </Paper>
-        ) : null} */}
+      <Container p="xl">
+        <Title>Fit Commit - Live Dashboard</Title>
 
         {commits
-          ? commits.map((commit) => {
-              return (
-                <Center>
-                  <Text>{JSON.stringify(commit)}</Text>
-                </Center>
-              );
-            })
+          ? commits
+              .sort((a, b) => {
+                return (
+                  new Date(b.createdDate).getTime() -
+                  new Date(a.createdDate).getTime()
+                );
+              })
+              .map((commit) => {
+                const { commitId, target, createdDate } = commit;
+                const { amount } = commitsMap[commitId];
+                const relativeTime =
+                  Date.now() - new Date(createdDate).getTime();
+
+                return (
+                  <Paper my="lg" p="sm">
+                    <Flex>
+                      <Flex pr="xl">
+                        <Avatar size={80} />
+                      </Flex>
+
+                      <Flex>
+                        <Text fz={24}>
+                          <Text span fw="bold" c="blue">
+                            U{commit.userId}
+                          </Text>{" "}
+                          has made a commitment of Rs. {amount}.
+                          <Text fz="xl">
+                            They will do{" "}
+                            <Text span fw="bold">
+                              {target} classes
+                            </Text>{" "}
+                            this week.
+                          </Text>
+                          <Text fz="md">
+                            {Math.round(relativeTime / 1000 / 60)} minutes ago
+                          </Text>
+                        </Text>
+                      </Flex>
+                    </Flex>
+                  </Paper>
+                );
+              })
           : null}
-
-        <Center pt="3rem" pb="1rem" px="2rem">
-          <Text fz="xl">
-            On average, you did <b>3 workouts</b> per week recently. Push
-            yourself further by making a commitment.
-          </Text>
-        </Center>
-
-        <Center py="1rem" px="2rem">
-          <Text fz="xl">
-            If you succeed, you can earn upto double your money back!
-          </Text>
-        </Center>
-
-        <Link href="/commit/pay?id=1&initial=1&target=3">
-          <Paper shadow="sm" m="lg" p="md">
-            <Flex>
-              <Text fw="bold" fz="lg">
-                I want to do slightly better. I commit to doing 3 classes this
-                week.
-              </Text>
-              <Center>
-                <IconChevronRight />
-              </Center>
-            </Flex>
-          </Paper>
-        </Link>
-
-        <Link href="/commit/pay?id=2&initial=1&target=5">
-          <Paper shadow="sm" m="lg" p="md">
-            <Flex>
-              <Text fw="bold" fz="lg">
-                I'll push myself very hard. I commit to doing 5 classes this
-                week.
-              </Text>
-              <Center>
-                <IconChevronRight />
-              </Center>
-            </Flex>
-          </Paper>
-        </Link>
-
-        <Link href="/commit/pay?id=3&initial=1&target=7">
-          <Paper shadow="sm" m="lg" p="md">
-            <Flex>
-              <Text fw="bold" fz="lg">
-                I want to go beast mode. I commit to doing 7 classes this week.
-              </Text>
-              <Center>
-                <IconChevronRight />
-              </Center>
-            </Flex>
-          </Paper>
-        </Link>
       </Container>
     </div>
   );

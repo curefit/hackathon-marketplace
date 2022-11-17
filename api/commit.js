@@ -5,6 +5,10 @@ export function getCommits() {
   return superagent.get(host + "/commits").then((res) => res.body);
 }
 
+export function getAllCommits() {
+  return superagent.get(host + "/user-commits").then((res) => res.body);
+}
+
 export function makeCommitment({ commitId, initial, target, amount }) {
   const userId = getSavedUser().id;
   return superagent
