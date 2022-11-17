@@ -1,22 +1,14 @@
 import Head from "next/head";
-import Image from "next/image";
 import {
-  Slider,
   Flex,
-  Grid,
   Center,
-  Skeleton,
   Container,
-  TextInput,
-  Button,
-  NativeSelect,
   Text,
   Paper,
-  Box,
   ThemeIcon,
   RingProgress,
 } from "@mantine/core";
-import { IconCheck, IconChevronRight } from "@tabler/icons";
+import { IconCheck } from "@tabler/icons";
 import { useRouter } from "next/router";
 
 export default function Home() {

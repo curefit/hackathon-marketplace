@@ -1,20 +1,11 @@
 import Head from "next/head";
-import Image from "next/image";
 import {
-  Slider,
-  Grid,
   Center,
-  Skeleton,
   Container,
-  TextInput,
   Button,
-  NativeSelect,
   Text,
-  Loader,
   Paper,
-  Divider,
   Avatar,
-  Box,
   SimpleGrid,
   ThemeIcon,
   Flex,

@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Center, Title, Grid, Skeleton, Container } from "@mantine/core";
 
-import createAppImage from "../public/images/create-app.png";
 import commitAppImage from "../public/images/fit-commit.png";
 import buddyAppImage from "../public/images/fit-buddy.png";
 import blankAppImage from "../public/images/blank-app.png";
@@ -32,7 +31,7 @@ export default function Home() {
             </Link>
           </Grid.Col>
           <Grid.Col span={4}>
-            <Link href={"/commit/login"}>
+            <Link href={"/buddy/login"}>
               <Image src={buddyAppImage} width={100} />
               <Title td="none" order={3}>
                 Fit Buddy

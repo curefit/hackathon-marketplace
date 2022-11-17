@@ -1,15 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
 import {
-  Slider,
   Flex,
-  Grid,
   Center,
-  Skeleton,
   Container,
-  TextInput,
-  Button,
-  NativeSelect,
   Text,
   Paper,
 } from "@mantine/core";
