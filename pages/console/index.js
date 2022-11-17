@@ -72,16 +72,16 @@ export default function Home() {
                   Date.now() - new Date(createdDate).getTime();
 
                 return (
-                  <Paper my="lg" p="sm">
+                  <Paper key={createdDate} my="lg" p="sm">
                     <Flex>
                       <Flex pr="xl">
-                        <Avatar size={80} />
+                        <Avatar size={80} src={commit.profile.profilePictureUrl}/>
                       </Flex>
 
                       <Flex>
                         <Text fz={24}>
                           <Text span fw="bold" c="blue">
-                            U{commit.userId}
+                            {commit.profile.firstName} {commit.profile.lastName}
                           </Text>{" "}
                           has made a commitment of Rs. {amount}.
                           <Text fz="xl">

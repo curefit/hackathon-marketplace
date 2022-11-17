@@ -1,11 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { Center, Title, Grid, Skeleton, Container } from "@mantine/core";
+import { Center, Title, Grid, Space,Skeleton, Container, Flex } from "@mantine/core";
+import { IconChevronRight } from "@tabler/icons";
 
-import commitAppImage from "../public/images/fit-commit.png";
-import buddyAppImage from "../public/images/fit-buddy.png";
-import blankAppImage from "../public/images/blank-app.png";
+import { appsMap } from "../api/data";
 
 export default function Home() {
   const child = <Skeleton height={140} radius="md" animate={false} />;
@@ -24,61 +23,33 @@ export default function Home() {
         </Center>
 
         <Grid>
-          <Grid.Col span={4}>
-            <Link href={"/commit/login"}>
-              <Image src={commitAppImage} width={100} />
-              <Title order={3}>Fit Commit</Title>
-            </Link>
-          </Grid.Col>
-          <Grid.Col span={4}>
-            <Link href={"/buddy/login"}>
-              <Image src={buddyAppImage} width={100} />
-              <Title td="none" order={3}>
-                Fit Buddy
-              </Title>
-            </Link>
-          </Grid.Col>
-          <Grid.Col span={4}>
-            <Link href={"/commit/login"}>
-              <Image src={blankAppImage} width={100} />
-              <Title style={{ textDecoration: "none" }} order={3}>
-                Nice App
-              </Title>
-            </Link>
-          </Grid.Col>
-          <Grid.Col span={4}>
-            <Link href={"/commit/login"}>
-              <Image src={blankAppImage} width={100} />
-              <Title td="none" order={3}>
-                Great App
-              </Title>
-            </Link>
-          </Grid.Col>
-          <Grid.Col span={4}>
-            <Link href={"/commit/login"}>
-              <Image src={blankAppImage} width={100} />
-              <Title td="none" order={3}>
-                Fun App
-              </Title>
-            </Link>
-          </Grid.Col>
-          <Grid.Col span={4}>
-            <Link href={"/commit/login"}>
-              <Image src={blankAppImage} width={100} />
-              <Title td="none" order={3}>
-                Crazy App
-              </Title>
-            </Link>
-          </Grid.Col>
-          {/* <Grid.Col span={4}>
-            <Link  href={"/login"}>
-              <Image src={createAppImage} width={100} />
-              <Title style={{textDecoration:'none'}} order={3}>Create App</Title>
-            </Link>
-          </Grid.Col> */}
-          {/* <Grid.Col xs={4}>{child}</Grid.Col> */}
-          {/* <Grid.Col xs={4}>{child}</Grid.Col> */}
-          {/* <Grid.Col xs={4}>{child}</Grid.Col> */}
+          {appsMap.map((app) => {
+            return (
+              <Grid.Col span={12}>
+                <Link href={app.link}>
+                  <Flex justify="space-between">
+                    <Flex>
+                      <Image src={app.logo} width={100} />
+                    </Flex>
+                    <Center>
+                      <Flex direction="column">
+                        <Title order={3}>{app.name}</Title>
+                        <Title fw="normal" order={5}>
+                          {app.description}
+                        </Title>
+                      </Flex>
+                    </Center>
+                    <Space></Space>
+                    <Flex>
+                      <Center>
+                        <IconChevronRight />
+                      </Center>
+                    </Flex>
+                  </Flex>
+                </Link>
+              </Grid.Col>
+            );
+          })}
         </Grid>
       </Container>
     </div>

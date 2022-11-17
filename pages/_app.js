@@ -1,10 +1,18 @@
-import "../styles/globals.css"
+import "../styles/globals.css";
 
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
+import { useEffect } from "react";
 
 export default function App(props) {
   const { Component, pageProps } = props;
+
+  useEffect(() => {
+    window.onerror = function (e) {
+      alert(e);
+      return false;
+    };
+  }, []);
 
   return (
     <>
@@ -22,7 +30,7 @@ export default function App(props) {
         theme={{
           /** Put your mantine theme override here */
           colorScheme: "dark",
-          loader: 'bars' 
+          loader: "bars",
         }}
       >
         <Component {...pageProps} />
