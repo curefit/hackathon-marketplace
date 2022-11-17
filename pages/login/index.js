@@ -12,7 +12,6 @@ import {
   Text,
 } from "@mantine/core";
 
-import loginFlow from "../../public/images/login.jpeg";
 import cultLogo from "../../public/images/logo.png";
 import tncImage from "../../public/images/tnc.jpg";
 
@@ -30,7 +29,8 @@ export default function Home() {
 
         <Center pt="2rem" pb="4rem" px="2rem">
           <Text fz="xl">
-            Allow <b>Fit Commit</b> to access your class workout history on Cult?
+            Allow <b>Fit Commit</b> to access your class workout history on
+            Cult?
           </Text>
         </Center>
 
