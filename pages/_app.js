@@ -1,3 +1,5 @@
+import "../styles/globals.css"
+
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
 
