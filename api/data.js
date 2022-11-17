@@ -1,5 +1,6 @@
 export const commitsMap = {
-  1: {
+  "1": {
+    amount: 100,
     getTarget: (current) => {
       return current + 1;
     },
@@ -7,7 +8,8 @@ export const commitsMap = {
       return `I want to do slightly better. I commit to doing ${target} classes this week.`;
     },
   },
-  2: {
+  "2": {
+    amount: 500,
     getTarget: (current) => {
       return current + 2;
     },
@@ -15,7 +17,8 @@ export const commitsMap = {
       return `I'll push myself very hard. I commit to doing ${target} classes this week.`;
     },
   },
-  3: {
+  "3": {
+    amount: 1000,
     getTarget: (current) => {
       return current + 3;
     },

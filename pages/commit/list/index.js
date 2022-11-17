@@ -1,36 +1,27 @@
 import Head from "next/head";
-import Image from "next/image";
 import {
-  Slider,
   Flex,
-  Grid,
   Center,
-  Skeleton,
   Container,
-  TextInput,
-  Button,
-  NativeSelect,
   Text,
   Paper,
   Avatar,
+  Divider,
 } from "@mantine/core";
 import { IconChevronRight } from "@tabler/icons";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getUserActivity } from "../../../api";
+import { getSavedUser, getUserActivity } from "../../../api";
 import { getCommits } from "../../../api/commit";
 import { commitsMap } from "../../../api/data";
 
-function calculateTargets(current) {
-  return [current + 1, current + 2, current + 3];
-}
 export default function Home() {
   const [user, setUser] = useState();
   const [maxActivity, setMaxActivity] = useState();
   const [commits, setCommits] = useState();
 
   useEffect(() => {
-    const u = JSON.parse(window.localStorage.getItem("user"));
+    const u = getSavedUser();
     setUser(u);
 
     getUserActivity(u.id).then((activity) => {
@@ -38,8 +29,9 @@ export default function Home() {
       console.log("user activity", activity);
     });
 
-    getCommits().then((c) => {
-      setCommits([{ id: 1 }, { id: 2 }, { id: 3 }]);
+    getCommits().then((data) => {
+      console.log("getCommits", data);
+      setCommits(data);
     });
   }, []);
 
@@ -85,14 +77,15 @@ export default function Home() {
 
         {commits
           ? commits.map((commit) => {
-              const { id } = commit;
-              const { getTarget, getText } = commitsMap[id];
+              const { commitId } = commit;
+              const { amount,getTarget, getMessage } = commitsMap[commitId];
               const target = getTarget(maxActivity);
               const message = getMessage(target);
 
               return (
                 <Link
-                  href={`/commit/pay?id=${id}&initial=${maxActivity}&target=${target}`}
+                  key={commitId}
+                  href={`/commit/pay?id=${commitId}&initial=${maxActivity}&target=${target}&amount=${amount}`}
                 >
                   <Paper shadow="sm" m="lg" p="md">
                     <Flex>
@@ -103,53 +96,25 @@ export default function Home() {
                         <IconChevronRight />
                       </Center>
                     </Flex>
+                    {commit.users?.length ?<Divider mt="md" />:null}
+                    {commit.users?.length ? (
+                      <Flex direction="column">
+                        <Flex my="md">
+                          {commit.users.map((user) => {
+                            return <Avatar src={user.profilePictureUrl} />;
+                          })}
+                        </Flex>
+                        <Text>
+                          These members have already committed making total prize
+                          pool as Rs. {amount * commit.users.length}.
+                        </Text>
+                      </Flex>
+                    ) : null}
                   </Paper>
                 </Link>
               );
             })
           : null}
-
-        <Link href="/commit/pay?id=1&initial=1&target=3">
-          <Paper shadow="sm" m="lg" p="md">
-            <Flex>
-              <Text fw="bold" fz="lg">
-                I want to do slightly better. I commit to doing{" "}
-                {calculateTargets(maxActivity)[0]} classes this week.
-              </Text>
-              <Center>
-                <IconChevronRight />
-              </Center>
-            </Flex>
-          </Paper>
-        </Link>
-
-        <Link href="/commit/pay?id=2&initial=1&target=5">
-          <Paper shadow="sm" m="lg" p="md">
-            <Flex>
-              <Text fw="bold" fz="lg">
-                I'll push myself very hard. I commit to doing{" "}
-                {calculateTargets(maxActivity)[1]} classes this week.
-              </Text>
-              <Center>
-                <IconChevronRight />
-              </Center>
-            </Flex>
-          </Paper>
-        </Link>
-
-        <Link href="/commit/pay?id=3&initial=1&target=7">
-          <Paper shadow="sm" m="lg" p="md">
-            <Flex>
-              <Text fw="bold" fz="lg">
-                I want to go beast mode. I commit to doing{" "}
-                {calculateTargets(maxActivity)[2]} classes this week.
-              </Text>
-              <Center>
-                <IconChevronRight />
-              </Center>
-            </Flex>
-          </Paper>
-        </Link>
       </Container>
     </div>
   );

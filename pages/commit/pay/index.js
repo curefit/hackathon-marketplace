@@ -1,18 +1,13 @@
 import Head from "next/head";
-import {
-  Flex,
-  Center,
-  Container,
-  Text,
-  Paper,
-} from "@mantine/core";
+import { Flex, Center, Container, Text, Paper } from "@mantine/core";
 import { IconChevronRight } from "@tabler/icons";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { makeCommitment } from "../../../api/commit";
 
 export default function Home() {
   const router = useRouter();
-  const { id, initial, target } = router.query;
+  const { id, initial, target,amount } = router.query;
 
   return (
     <div style={{ backgroundColor: "black", height: 1000 }}>
@@ -36,18 +31,31 @@ export default function Home() {
           </Text>
         </Center>
 
-        <Link href="/commit/confirm">
-          <Paper shadow="sm" m="lg" p="md" bg="teal">
-            <Flex>
-              <Text fw="bold" fz="lg">
-                I commit Rs. 500 towards working out {target} times this week.
-              </Text>
-              <Center>
-                <IconChevronRight />
-              </Center>
-            </Flex>
-          </Paper>
-        </Link>
+        <Paper
+          shadow="sm"
+          m="lg"
+          p="md"
+          bg="teal"
+          onClick={() => {
+            makeCommitment({
+              commitId: id,
+              initial: initial,
+              target: target,
+              amount: amount,
+            }).then(() => {
+              router.push("/commit/confirm");
+            });
+          }}
+        >
+          <Flex>
+            <Text fw="bold" fz="lg">
+              I commit Rs. {amount} towards working out {target} times this week.
+            </Text>
+            <Center>
+              <IconChevronRight />
+            </Center>
+          </Flex>
+        </Paper>
       </Container>
     </div>
   );
