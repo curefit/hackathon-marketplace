@@ -12,8 +12,9 @@ import {
   NativeSelect,
   Text,
   Paper,
-  Avatar,
+  Avatar,Loader,
   Title,
+  Space,
 } from "@mantine/core";
 import { IconChevronRight } from "@tabler/icons";
 import Link from "next/link";
@@ -51,7 +52,10 @@ export default function Home() {
       </Head>
 
       <Container p="xl">
-        <Title>Fit Commit - Live Dashboard</Title>
+        <Flex justify="space-between">
+          <Title>Fit Commit - Live Dashboard</Title>
+          <Loader />
+        </Flex>
 
         {commits
           ? commits
