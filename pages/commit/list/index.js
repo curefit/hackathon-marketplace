@@ -101,7 +101,7 @@ export default function Home() {
                       <Flex direction="column">
                         <Flex my="md">
                           {commit.users.map((user) => {
-                            return <Avatar src={user.profilePictureUrl} />;
+                            return <Avatar key={user.id} mr="xs" src={user.profilePictureUrl} />;
                           })}
                         </Flex>
                         <Text>
