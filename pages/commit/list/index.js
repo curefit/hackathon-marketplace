@@ -36,7 +36,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "black", height: 1000 }}>
+    <div style={{ backgroundColor: "black" }}>
       <Head>
         <title>Login with Cult</title>
       </Head>
@@ -55,7 +55,7 @@ export default function Home() {
                   </Text>
                 </Flex>
                 <Flex>
-                  <Text fz="xl">{user.email}</Text>
+                  <Text fz="s">{user.email}</Text>
                 </Flex>
               </Flex>
             </Flex>
