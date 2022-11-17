@@ -11,7 +11,12 @@ export function fetchUserId({ appId, phone }) {
   return superagent
     .post(host + "/user/login")
     .send({ appId, phone })
-    .then((res) => res.body);
+    .then((res) => res.body)
+    .catch((e) => {
+      alert(
+        "Demo works only on office network, check if connected to Curefit-Office Wifi."
+      );
+    });
 }
 
 export function getUserActivity(userId) {
