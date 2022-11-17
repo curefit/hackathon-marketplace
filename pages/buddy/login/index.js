@@ -12,8 +12,9 @@ import {
   Text,
 } from "@mantine/core";
 
-import cultLogo from "../../public/images/logo.png";
-import tncImage from "../../public/images/tnc.jpg";
+import cultLogo from "../../../public/images/logo.png";
+import tncImage from "../../../public/images/tnc.jpg";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -29,7 +30,7 @@ export default function Home() {
 
         <Center pt="2rem" pb="4rem" px="2rem">
           <Text fz="xl">
-            Allow <b>Fit Commit</b> to access your class workout history on
+            Allow <b>Fit Buddy</b> to access your class workout history on
             Cult?
           </Text>
         </Center>
@@ -42,9 +43,11 @@ export default function Home() {
         </Container>
 
         <Container mt="2rem" mb="6rem">
-          <Button fullWidth variant="white" color="dark">
-            ALLOW
-          </Button>
+          <Link href="/buddy/find">
+            <Button fullWidth variant="white" color="dark">
+              ALLOW
+            </Button>
+          </Link>
         </Container>
 
         <Center>

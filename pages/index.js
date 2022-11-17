@@ -26,39 +26,49 @@ export default function Home() {
 
         <Grid>
           <Grid.Col span={4}>
-            <Link href={"/login"}>
+            <Link href={"/commit/login"}>
               <Image src={commitAppImage} width={100} />
               <Title order={3}>Fit Commit</Title>
             </Link>
           </Grid.Col>
           <Grid.Col span={4}>
-            <Link href={"/login"}>
+            <Link href={"/commit/login"}>
               <Image src={buddyAppImage} width={100} />
-              <Title td="none" order={3}>Fit Buddy</Title>
+              <Title td="none" order={3}>
+                Fit Buddy
+              </Title>
             </Link>
           </Grid.Col>
           <Grid.Col span={4}>
-            <Link href={"/login"}>
+            <Link href={"/commit/login"}>
               <Image src={blankAppImage} width={100} />
-              <Title style={{textDecoration:'none'}} order={3}>Nice App</Title>
+              <Title style={{ textDecoration: "none" }} order={3}>
+                Nice App
+              </Title>
             </Link>
           </Grid.Col>
           <Grid.Col span={4}>
-            <Link href={"/login"}>
+            <Link href={"/commit/login"}>
               <Image src={blankAppImage} width={100} />
-              <Title td="none" order={3}>Great App</Title>
+              <Title td="none" order={3}>
+                Great App
+              </Title>
             </Link>
           </Grid.Col>
           <Grid.Col span={4}>
-            <Link href={"/login"}>
+            <Link href={"/commit/login"}>
               <Image src={blankAppImage} width={100} />
-              <Title td="none" order={3}>Fun App</Title>
+              <Title td="none" order={3}>
+                Fun App
+              </Title>
             </Link>
           </Grid.Col>
           <Grid.Col span={4}>
-            <Link href={"/login"}>
+            <Link href={"/commit/login"}>
               <Image src={blankAppImage} width={100} />
-              <Title td="none" order={3}>Crazy App</Title>
+              <Title td="none" order={3}>
+                Crazy App
+              </Title>
             </Link>
           </Grid.Col>
           {/* <Grid.Col span={4}>
