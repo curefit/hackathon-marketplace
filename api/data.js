@@ -44,33 +44,32 @@ export const appsMap = [
   {
     id: "commit",
     name: "Fit Buddy",
-    description:
-      "Attend classes with a buddy and have a friendly competition.",
+    description: "Attend classes with a buddy and have a friendly competition.",
     logo: buddyAppImage,
     link: "/buddy/login",
   },
   {
     id: "commit",
-    name: "Great App",
+    name: "Meal Planner",
     description:
-      "You had a great new idea, and made this app.",
+      "Create a meal plan customised to your fitness interests.",
     logo: blankAppImage,
-    link: "/commit/login",
+    link: "/",
   },
   {
     id: "commit",
-    name: "Fun App",
+    name: "Fitness Score",
     description:
-      "Something your friend might have made based on a new idea.",
+      "An insurance company could generate a fitness score for best price.",
     logo: blankAppImage,
-    link: "/commit/login",
+    link: "/",
   },
   {
     id: "commit",
-    name: "Crazy App",
+    name: "Fit Dating",
     description:
-      "Something another friend might have built using the marketplace.",
+      "Showcase your fitness rigor with verified data provided by Cult.",
     logo: blankAppImage,
-    link: "/commit/login",
+    link: "/",
   },
 ];
