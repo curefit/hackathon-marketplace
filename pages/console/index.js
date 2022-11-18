@@ -67,7 +67,7 @@ export default function Home() {
                 );
               })
               .map((commit) => {
-                const { commitId, target, createdDate } = commit;
+                const { commitId, initial, target, createdDate } = commit;
                 const { amount } = commitsMap[commitId];
                 const relativeTime =
                   Date.now() - new Date(createdDate).getTime();
@@ -91,7 +91,7 @@ export default function Home() {
                           <Text fz="xl">
                             They will do{" "}
                             <Text span fw="bold">
-                              {target} classes
+                              {target - initial} extra classes
                             </Text>{" "}
                             this week.
                           </Text>

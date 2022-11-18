@@ -69,16 +69,10 @@ export default function Home() {
           </Text>
         </Center>
 
-        <Center py="1rem" px="2rem">
-          <Text fz="xl">
-            If you succeed, you can earn upto double your money back!
-          </Text>
-        </Center>
-
         {commits
           ? commits.map((commit) => {
               const { commitId } = commit;
-              const { amount,getTarget, getMessage } = commitsMap[commitId];
+              const { amount, getTarget, getMessage } = commitsMap[commitId];
               const target = getTarget(maxActivity);
               const message = getMessage(target);
 
@@ -96,17 +90,23 @@ export default function Home() {
                         <IconChevronRight />
                       </Center>
                     </Flex>
-                    {commit.users?.length ?<Divider mt="md" />:null}
+                    {commit.users?.length ? <Divider mt="md" /> : null}
                     {commit.users?.length ? (
                       <Flex direction="column">
                         <Flex my="md">
                           {commit.users.map((user) => {
-                            return <Avatar key={user.id} mr="xs" src={user.profilePictureUrl} />;
+                            return (
+                              <Avatar
+                                key={user.id}
+                                mr="xs"
+                                src={user.profilePictureUrl}
+                              />
+                            );
                           })}
                         </Flex>
                         <Text>
-                          These members have already committed making total prize
-                          pool as Rs. {amount * commit.users.length}.
+                          These members have already committed making total
+                          prize pool as Rs. {amount * commit.users.length}.
                         </Text>
                       </Flex>
                     ) : null}
