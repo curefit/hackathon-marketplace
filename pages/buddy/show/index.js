@@ -14,28 +14,51 @@ import {
 import { IconCircle, IconCircleCheck, IconCircleX } from "@tabler/icons";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { getSavedUser } from "../../../api";
+import { getAllCommits } from "../../../api/commit";
 
 export default function Home() {
+  const [user, setUser] = useState();
+  const [buddy, setBuddy] = useState();
+
+  useEffect(() => {
+    const u = getSavedUser();
+    setUser(u);
+
+    getAllCommits().then((data) => {
+      const commits = data.filter((commit) => commit.profile.id !== u.id);
+      const randomIndex = Math.floor(Math.random() * commits.length);
+      const randomBuddy = commits[randomIndex].profile;
+      console.log(randomBuddy);
+      setBuddy(randomBuddy);
+    });
+  }, []);
+
+  if (!buddy) return null;
+
   return (
-    <div style={{ backgroundColor: "black", height: 1000 }}>
+    <div>
       <Head>
         <title>Show my buddy - Fit Buddy</title>
       </Head>
 
-      <Container>
+      <Container style={{ backgroundColor: "black", height: 1000 }}>
         <Paper mt="xl" p="xl">
           <Flex>
             <Flex>
-              <Avatar size="xl" radius="xl" />
+              <Avatar size="xl" radius="xl" src={buddy.profilePictureUrl} />
             </Flex>
             <Flex ml="xl" direction="column">
               <Flex>
                 <Text fw="bold" fz="xl">
-                  John Appleseed
+                  Your new buddy!
                 </Text>
               </Flex>
               <Flex>
-                <Text fz="xl">Cult HSR 19th Main</Text>
+                <Text fz="xl">
+                  {buddy.firstName} {buddy.lastName}
+                </Text>
               </Flex>
             </Flex>
           </Flex>
@@ -44,7 +67,7 @@ export default function Home() {
         <SimpleGrid mt="2rem" cols={2}>
           <Flex direction="column">
             <Center>
-              <Avatar size="xl" radius="xl" />
+              <Avatar size="xl" radius="xl" src={user.profilePictureUrl} />
             </Center>
             <Flex my="md">
               <ThemeIcon color="green" radius="xl">
@@ -91,7 +114,7 @@ export default function Home() {
           </Flex>
           <Flex direction="column">
             <Center>
-              <Avatar size="xl" radius="xl" />
+              <Avatar size="xl" radius="xl" src={buddy.profilePictureUrl} />
             </Center>
             <Flex my="md">
               <ThemeIcon color="green" radius="xl">
@@ -139,7 +162,7 @@ export default function Home() {
         </SimpleGrid>
 
         <Container mt="2rem" mb="2rem">
-          <Link href="/buddy/find">
+          <Link href="/">
             <Button fullWidth color="green">
               BOOK NEXT CLASS
             </Button>

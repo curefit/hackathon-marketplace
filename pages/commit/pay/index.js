@@ -43,7 +43,7 @@ export default function Home() {
               target: target,
               amount: amount,
             }).then(() => {
-              router.push("/commit/confirm");
+              router.push("/commit/payment");
             });
           }}
         >

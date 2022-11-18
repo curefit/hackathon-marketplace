@@ -9,13 +9,13 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push("/buddy/show");
+      router.push("/commit/confirm");
     }, 2000);
     return () => {
       clearTimeout(timer);
     };
   });
-  
+
   return (
     <div style={{ backgroundColor: "black", height: 1000 }}>
       <Head>
@@ -28,7 +28,7 @@ export default function Home() {
         </Center>
 
         <Center pt="2rem" pb="4rem" px="2rem">
-          <Text fz="xl">Finding your fitness buddy...</Text>
+          <Text fz="xl">Confirming payment...</Text>
         </Center>
       </Container>
     </div>

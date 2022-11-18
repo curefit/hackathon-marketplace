@@ -12,7 +12,8 @@ import {
   NativeSelect,
   Text,
   Paper,
-  Avatar,Loader,
+  Avatar,
+  Loader,
   Title,
   Space,
 } from "@mantine/core";
@@ -75,7 +76,10 @@ export default function Home() {
                   <Paper key={createdDate} my="lg" p="sm">
                     <Flex>
                       <Flex pr="xl">
-                        <Avatar size={80} src={commit.profile.profilePictureUrl}/>
+                        <Avatar
+                          size={80}
+                          src={commit.profile.profilePictureUrl}
+                        />
                       </Flex>
 
                       <Flex>
