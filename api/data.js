@@ -42,14 +42,14 @@ export const appsMap = [
     link: "/commit/login",
   },
   {
-    id: "commit",
+    id: "buddy",
     name: "Fit Buddy",
     description: "Attend classes with a buddy and have a friendly competition.",
     logo: buddyAppImage,
     link: "/buddy/login",
   },
   {
-    id: "commit",
+    id: "planner",
     name: "Meal Planner",
     description:
       "Create a meal plan customised to your fitness interests.",
@@ -57,7 +57,7 @@ export const appsMap = [
     link: "/",
   },
   {
-    id: "commit",
+    id: "score",
     name: "Fitness Score",
     description:
       "An insurance company could generate a fitness score for best price.",
@@ -65,7 +65,7 @@ export const appsMap = [
     link: "/",
   },
   {
-    id: "commit",
+    id: "dating",
     name: "Fit Dating",
     description:
       "Showcase your fitness rigor with verified data provided by Cult.",
