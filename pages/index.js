@@ -25,11 +25,11 @@ export default function Home() {
         <Grid>
           {appsMap.map((app) => {
             return (
-              <Grid.Col span={12}>
+              <Grid.Col key={app.id} span={12}>
                 <Link href={app.link}>
                   <Flex justify="space-between">
                     <Flex>
-                      <Image src={app.logo} width={100} />
+                      <Image src={app.logo} alt={app.name} width={100} />
                     </Flex>
                     <Center>
                       <Flex direction="column">
