@@ -34,7 +34,7 @@ Google Slides: https://docs.google.com/presentation/d/1Oba9yeaLfX8Hi3-XD7nwNIYDf
 
 ## Screen Recording
 
-Play Video: https://user-images.githubusercontent.com/543981/204714286-d526e64e-014b-4604-9b6c-24c1e545bdad.mov
+https://user-images.githubusercontent.com/543981/204716302-ee202829-fc9d-4d78-87cb-0db21afb35f6.mov
 
 ## Tech
 
